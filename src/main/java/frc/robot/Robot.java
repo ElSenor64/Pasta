@@ -20,6 +20,7 @@ public class Robot extends TimedRobot {
 
   private Controllers controllers;
   private Claw claw;
+  private Encompasser encomp;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -29,6 +30,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     controllers = new Controllers();
     claw = new Claw();
+    encomp = new Encompasser();
   }
 
   /**
@@ -75,7 +77,11 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     controllers.setControllerValues();
+    //Claw
     claw.clawMove(controllers.getOpenClawTrigger(), controllers.getCloseClawTrigger());
+    //Encompasser
+    encomp.kirby(controllers.getNomInp());
+
   }
 
   /**
