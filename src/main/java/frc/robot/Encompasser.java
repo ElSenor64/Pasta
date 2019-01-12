@@ -35,18 +35,24 @@ public class Encompasser {
                 break;
             case ENTAKE:
                 if(nomInp >= -0.15 && nomInp <= 0.15) {
-                    
                     encompLMoto.set(0);
                     encompRMoto.set(0);
                     enState = EnStates.STATIONARY;
                 }
+                else{
+                    encompLMoto.set(nomInp);
+                    encompRMoto.set(nomInp * -1);
+                }
                 break;
             case EXTAKE:
                 if(nomInp >= -0.15 && nomInp <=         0.15) {
-                    
                     encompLMoto.set(0);
                     encompRMoto.set(0);
                     enState = EnStates.STATIONARY;
+                }
+                else{
+                    encompLMoto.set(nomInp);
+                    encompRMoto.set(nomInp * -1);
                 }
                 break;
         }
