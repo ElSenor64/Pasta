@@ -6,7 +6,7 @@ public class Controllers {
     private Joystick manipulatorStick;
 
     public Controllers() {
-        manipulatorStick = new Joystick(0);
+        manipulatorStick = new Joystick(Constants.MAN_CON_PORT);
         
     }
 }
