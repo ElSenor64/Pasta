@@ -2,8 +2,6 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.Joystick;
-
 public class Claw {
 	public enum ClawStates {
 		OPENING, CLOSING, NOT_MOVING
@@ -19,26 +17,26 @@ public class Claw {
 		clawMotor = new WPI_TalonSRX(0);
 	}
 
-	public void clawMove() {
+	public void clawMove(double openClawTrigger, double closeClawTrigger) {
 		switch (clawState) {
 		case OPENING:
-			if (manCon.getRawAxis(3) < 0.2 || manCon.getRawAxis(2) >= 0.2) {
+			if (openClawTrigger < 0.2 || closeRawTrigger >= 0.2) {
 				clawMotor.set(0);
 				clawState = ClawStates.NOT_MOVING;
 			}
 			break;
 		case CLOSING:
-			if (manCon.getRawAxis(2) < 0.2 || manCon.getRawAxis(3) >= 0.2) {
+			if (closeRawTrigger < 0.2 || openClawTrigger >= 0.2) {
 				clawMotor.set(0);
 				clawState = ClawStates.NOT_MOVING;
 			}
 			break;
 		case NOT_MOVING:
-			if (manCon.getRawAxis(2) >= 0.2 && manCon.getRawAxis(3) < 0.2) {
+			if (closeRawTrigger >= 0.2 && openRawTrigger < 0.2) {
 				clawMotor.set(-1.0);
 				clawState = ClawStates.CLOSING;
 			}
-			if (manCon.getRawAxis(3) >= 0.2 && manCon.getRawAxis(2) < 0.2) {
+			if (openRawTrigger >= 0.2 && closeRawTrigger < 0.2) {
 				clawMotor.set(1.0);
 				clawState = ClawStates.OPENING;
 			}

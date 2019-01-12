@@ -18,13 +18,17 @@ import edu.wpi.first.wpilibj.TimedRobot;
  */
 public class Robot extends TimedRobot {
 
+  private Controllers controllers;
+  private Claw claw;
+
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
    */
   @Override
   public void robotInit() {
-
+    controllers = new Controllers();
+    claw = new Claw();
   }
 
   /**
@@ -37,6 +41,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    
   }
 
   /**
@@ -69,6 +74,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    controllers.setControllerValues();
+    claw.clawMove(controllers.getOpenClawTrigger(), controllers.getCloseClawTrigger());
   }
 
   /**

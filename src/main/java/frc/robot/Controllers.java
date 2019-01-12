@@ -20,4 +20,8 @@ public class Controllers {
     public double getCloseClawTrigger() {
         return closeClawTrigger;
     }
+
+    public double getOpenClawTrigger() {
+        return openClawTrigger;
+    }
 }
