@@ -15,7 +15,7 @@ public class Claw {
 
 	public Claw() {
 		clawState = ClawStates.NOT_MOVING;
-		manCon = new Joystick(0);
+		manCon = new Joystick(Constants.MAN_CON_PORT);
 		clawMotor = new WPI_TalonSRX(0);
 	}
 
