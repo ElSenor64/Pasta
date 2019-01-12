@@ -13,8 +13,13 @@ public class Claw {
 	private WPI_TalonSRX clawMotor;
 
 	public Claw() {
-		clawState = ClawStates.NOT_MOVING;
 		clawMotor = new WPI_TalonSRX(0);
+		initialize();
+	}
+
+	public void initialize() {
+		clawState = ClawStates.NOT_MOVING;
+		clawMotor.set(0);
 	}
 
 	public void clawMove(double openClawTrigger, double closeClawTrigger) {

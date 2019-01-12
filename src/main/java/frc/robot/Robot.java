@@ -21,6 +21,7 @@ public class Robot extends TimedRobot {
   private Controllers controllers;
   private Claw claw;
   private Encompasser encomp;
+  private PoopScoop scooper;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -31,6 +32,7 @@ public class Robot extends TimedRobot {
     controllers = new Controllers();
     claw = new Claw();
     encomp = new Encompasser();
+    scooper = new PoopScoop();
   }
 
   /**
@@ -59,7 +61,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    
+    claw.initialize();
+    encomp.initialize();
+    scooper.initialize();
   }
 
   /**
@@ -71,6 +75,13 @@ public class Robot extends TimedRobot {
     }
   
 
+  @Override
+  public void teleopInit() {
+    claw.initialize();
+    encomp.initialize();
+    scooper.initialize();
+  }
+
   /**
    * This function is called periodically during operator control.
    */
@@ -81,7 +92,8 @@ public class Robot extends TimedRobot {
     claw.clawMove(controllers.getOpenClawTrigger(), controllers.getCloseClawTrigger());
     //Encompasser
     encomp.kirby(controllers.getNomInp());
-
+    //PoopScoop
+    scooper.scoop(controllers.isDoScoop());
   }
 
   /**

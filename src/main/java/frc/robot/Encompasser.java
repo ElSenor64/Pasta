@@ -12,9 +12,15 @@ public class Encompasser {
     private WPI_TalonSRX encompRMoto;
 
     public Encompasser() {
-        enState = EnStates.STATIONARY;
         encompLMoto = new WPI_TalonSRX(Constants.ENCOM_LMOTO_PORT);
         encompRMoto = new WPI_TalonSRX(Constants.ENCOM_RMOTO_PORT);
+        initialize();
+    }
+
+    public void initialize() {
+        enState = EnStates.STATIONARY;
+        encompLMoto.set(0);
+        encompRMoto.set(0);
     }
 
     public void kirby(double nomInp){
